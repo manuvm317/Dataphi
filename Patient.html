@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <link rel="stylesheet" href="style.css">
+  <script>
+	function validateForm(){
+			//alert("inside script");
+			var first = document.forms["myform"]["first"].value;
+			var last = document.forms["myform"]["last"].value;
+			//var age = document.forms["myform"]["age"].value;
+			var age1 = document.forms["myform"]["age1"].value;
+			var phone = document.forms["myform"]["phone"].value;
+			var flag = 0;
+			//alert(document.myform.first.value);
+			//alert(last);
+			//alert(phone);
+			//alert(age1);
+			if(!/^[A-Za-z\s]+$/.test(first))
+			{
+				
+				//alert("First Name must not be numeric");
+				document.getElementById('error_first').innerHTML="*Please enter a valid first name*";
+				//return false;
+				flag = 1;
+			}
+				
+			if(!/^[A-Za-z\s]+$/.test(last))
+			{
+				document.getElementById('error_last').innerHTML="*Please enter a valid last name*";
+				flag = 1;
+				//alert("Last Name must not be numeric");
+				//return false;
+			}
+						
+			/*if(/^[A-Za-z\s]+$/.test(phone))
+			{
+			alert("Phone number must be numeric");
+				return false;
+				
+			}
+				*/
+			/*if(/^[A-Za-z\s]+$/.test(age))
+			{
+				alert("Age must be numeric");
+				return false;
+				
+			}*/
+			
+			var age_re = /^\d{1,2}$/;
+			if(!age1.match(age_re))
+			{
+				document.getElementById('error_age1').innerHTML="*Please enter a valid Age*";
+				flag = 1;
+				
+				//alert("Age is invalid");
+				//return false;
+			}
+			var phno = /^\d{10}$/;
+			if(!phone.match(phno))
+			{
+				document.getElementById('error_phone').innerHTML="*Please enter a valid phone number*";
+				flag = 1;
+				//alert("Phone number invalid");
+				//return false;
+			}
+			
+			if(flag == 1)
+			return false;
+			
+			
+	}
+  </script>
+</head>
+<body>
+<div class="container">  
+  <form name="myform" id="contact" action="load.php" onsubmit="return validateForm()" method="post">
+    <h3>Patient Entry Form</h3>
+    <fieldset>
+	<h4><a href="search.html">Search Patient</a></h4>
+	</fieldset>
+    <fieldset>
+      <input name="first" placeholder="First Name" type="text" tabindex="1" required autofocus>
+	  <div id=error_first>
+	  </div>
+    </fieldset>
+	<fieldset>
+      <input name="last" placeholder="Last Name" type="text" tabindex="2" required autofocus>
+	  <div id=error_last>
+	  </div>
+    </fieldset>
+	<fieldset>
+      <input name="age1" placeholder="Age" type="text" tabindex="3" required autofocus>
+	  <div id=error_age1>
+	  </div>
+    </fieldset>
+	<fieldset>
+	  <!--<input name="DOB" placeholder="DOB" type="date" tabindex="4" required>	-->
+	  <input name="dob" placeholder="Date" type="text" onfocus="(this.type='date')"  id="date" tabindex="4" required> 
+
+	</fieldset>	
+	<fieldset>
+	   <select name="gender" placeholder="Gender" tabindex="5" required>
+			<option value="" disabled selected>Gender</option>
+			<option value="Male">Male</option>
+			<option value="Female">Female</option>
+		</select>	
+	</fieldset>
+	<fieldset>
+      <input name="phone" placeholder="Phone" type="text" tabindex="6" required autofocus>
+	  <div id=error_phone>
+	  </div>
+    </fieldset>
+    <fieldset>
+    <fieldset>
+      <textarea name="info" placeholder="More Information...." tabindex="7" required></textarea>
+    </fieldset>
+    <fieldset>
+      <!--<button name="submit" type="submit" id="contact-submit" data-submit="...Sending">Submit</button>-->
+	  <input type="submit" name="submit">
+    </fieldset>
+    
+  </form>
+</div>
+
+
+</body>
+</html>
